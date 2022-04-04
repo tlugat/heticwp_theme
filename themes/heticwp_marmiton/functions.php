@@ -15,6 +15,7 @@ function marmishlag_theme_support()
 //     wp_enqueue_script('name);
 // }
 
+
 function marmishlag_register_event_cpt()
 {
     $labels = [
@@ -63,6 +64,11 @@ function marmishlag_init()
     marmishlag_register_event_cpt();
     marmishlag_resister_recipeCategory_taxonomy();
 }
+
+
 add_action('init', 'marmishlag_init');
 add_action('after_setup_theme', "marmishlag_theme_support");
+add_action('after_switch_theme', function () {
+    flush_rewrite_rules();
+});
 // add_action('wp_enqueue_script', 'marmishlag_register_assets');
