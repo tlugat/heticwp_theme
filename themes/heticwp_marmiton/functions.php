@@ -19,7 +19,7 @@ function marmishlag_register_event_cpt()
 {
     $labels = [
         'name' => 'Recette',
-        'singular_name' => 'Recettes',
+        'singular_name' => 'Recette',
         'search_items' => 'Rechercher une recette',
         'all_items' => 'Toutes les recettes'
     ];
@@ -29,6 +29,7 @@ function marmishlag_register_event_cpt()
         'public' => true,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-food',
+        'taxonomies' => array('category'),
         'supports' => ['title', 'editor', 'author', 'thumbnail', 'comments', 'excerpt'],
         'show_in_rest' => true,
         'has_archive' => true,
@@ -37,6 +38,31 @@ function marmishlag_register_event_cpt()
     register_post_type('recipe', $args);
 }
 
-add_action('init', 'marmishlag_register_event_cpt');
+function marmishlag_resister_recipeCategory_taxonomy()
+{
+    $labels = [
+        'name' => 'Catégories',
+        'singular_name' => 'Catégorie',
+        'search_items' => 'Rechercher une catégorie',
+        'all_items' => 'Toutes les catégories'
+    ];
+
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'hierarchical' => true,
+        'show_in_rest' => true,
+        'show_admin_column' => true
+    ];
+
+    register_taxonomy('category', ['recipe'], $args);
+}
+
+function marmishlag_init()
+{
+    marmishlag_register_event_cpt();
+    marmishlag_resister_recipeCategory_taxonomy();
+}
+add_action('init', 'marmishlag_init');
 add_action('after_setup_theme', "marmishlag_theme_support");
 // add_action('wp_enqueue_script', 'marmishlag_register_assets');
