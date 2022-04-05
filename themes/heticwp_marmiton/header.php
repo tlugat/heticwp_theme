@@ -18,7 +18,7 @@
             salut <?php echo $user->user_login;?>;
             <a href="<?php echo bloginfo('url');?>/profil">Mon profil</a> |
             <a href="<?php echo bloginfo('url');?>/logout">Se déconnecter</a>
-            
+            <h1>aaa</h1>
             <?php endif; ?>
     </div>
 </body>
