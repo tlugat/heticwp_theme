@@ -1,6 +1,6 @@
 <?php
 
-class Terms
+class Custom_Terms
 {
     function __construct()
     {
@@ -10,11 +10,11 @@ class Terms
 
     function activate()
     {
-        $this->create_cpts_and_taxonomies();
+        $this->create_taxonomies();
         $this->register_new_terms();
     }
 
-    function create_cpts_and_taxonomies()
+    function create_taxonomies()
     {
 
         $args = array(
