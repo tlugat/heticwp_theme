@@ -40,7 +40,7 @@ class Custom_Post
      */
     function recipe_add_meta_boxes()
     {
-        add_meta_box('recipe_meta_box', __('Nutrition facts', 'recipe_example_plugin'), [$this, 'build_meta_box'], 'recipes', 'side', 'low');
+        add_meta_box('recipe_meta_box', __('Détails de la préparation', 'recipe_example_plugin'), [$this, 'build_meta_box'], 'recipes', 'side', 'low');
     }
 
     /**
@@ -50,18 +50,16 @@ class Custom_Post
      */
     function build_meta_box($post)
     {
-        // make sure the form request comes from WordPress
         wp_nonce_field(basename(__FILE__), 'recipe_meta_box_nonce');
 
-        // retrieve the _recipe_cholesterol current value
         $current_cholesterol = get_post_meta($post->ID, '_recipe_cholesterol', true);
 
-        // retrieve the _recipe_carbohydrates current value
-        $current_carbohydrates = get_post_meta($post->ID, '_recipe_carbohydrates', true);
-
+        $current_prepTime = get_post_meta($post->ID, '_recipe_prepTime', true);
+        $current_cookTime = get_post_meta($post->ID, '_recipe_cookTime', true);
+        $current_restingTime = get_post_meta($post->ID, '_recipe_restingTime', true);
+        // $total_time = $current_prepTime + $current_cookTime + $current_restingTime
         $vitamins = array('Vitamin A', 'Thiamin (B1)', 'Riboflavin (B2)', 'Niacin (B3)', 'Pantothenic Acid (B5)', 'Vitamin B6', 'Vitamin B12', 'Vitamin C', 'Vitamin D', 'Vitamin E', 'Vitamin K');
 
-        // stores _recipe_vitamins array 
         $current_vitamins = (get_post_meta($post->ID, '_recipe_vitamins', true)) ? get_post_meta($post->ID, '_recipe_vitamins', true) : array();
 
 ?>
@@ -73,9 +71,19 @@ class Custom_Post
                 <input type="radio" name="cholesterol" value="1" <?php checked($current_cholesterol, '1'); ?> /> No
             </p>
 
-            <h3><?php _e('Carbohydrates', 'recipe_example_plugin'); ?></h3>
+            <h3><?php _e('Temps de préparation', 'recipe_example_plugin'); ?></h3>
             <p>
-                <input type="text" name="carbohydrates" value="<?php echo $current_carbohydrates; ?>" />
+                <input type="text" name="prepTime" value="<?php echo $current_prepTime; ?>" />
+            </p>
+
+            <h3><?php _e('Temps de cuisson', 'recipe_example_plugin'); ?></h3>
+            <p>
+                <input type="text" name="cookTime" value="<?php echo $current_cookTime; ?>" />
+            </p>
+
+            <h3><?php _e('Temps de repos', 'recipe_example_plugin'); ?></h3>
+            <p>
+                <input type="text" name="restingTime" value="<?php echo $current_restingTime; ?>" />
             </p>
 
             <h3><?php _e('Vitamins', 'recipe_example_plugin'); ?></h3>
