@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   db:
-    image: mysql:5.7
+    image: 'mariadb'
     volumes:
         - db_data:/var/lib/mysql
     restart: always
@@ -9,6 +9,13 @@ services:
         MYSQL_ROOT_PASSWORD: password
         MYSQL_DATABASE: heticwp_marmiton
         MYSQL_PASSWORD: password
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      - PMA_ARBITRARY=1
   wordpress:
     depends_on:
         - db
