@@ -9,9 +9,16 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <?php wp_nav_menu(['theme_location' => 'header', 'container' => false]) ?>
-        </nav>
-        <?= get_search_form() ?>
-    </header>
+    <div>
+        <?php $user = wp_get_current_user(); ?>
+        <?php if ($user->ID == 0) : ?>
+            <a href="<?php echo bloginfo('url'); ?>/login">Se connecter</a>
+            <a href="<?php echo bloginfo('url'); ?>/register">S'inscrire</a>
+        <?php else : ?>
+            salut <?php echo $user->user_login; ?>;
+            <a href="<?php echo bloginfo('url'); ?>/profil">Mon profil</a> |
+            <a href="<?php echo bloginfo('url'); ?>/logout">Se déconnecter</a>
+
+        <?php endif; ?>
+    </div>
+</body>

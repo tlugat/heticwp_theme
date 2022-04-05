@@ -15,54 +15,54 @@ function marmishlag_theme_support()
 //     wp_enqueue_script('name);
 // }
 
-function marmishlag_register_event_cpt()
+function marmishlag_add_roles()
 {
-    $labels = [
-        'name' => 'Recette',
-        'singular_name' => 'Recette',
-        'search_items' => 'Rechercher une recette',
-        'all_items' => 'Toutes les recettes'
-    ];
+    add_role('moderator', 'Modérateur / Modératrice', [
+        'read' => true,
 
-    $args = [
-        'labels' => $labels,
-        'public' => true,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-food',
-        'taxonomies' => array('category'),
-        'supports' => ['title', 'editor', 'author', 'thumbnail', 'comments', 'excerpt'],
-        'show_in_rest' => true,
-        'has_archive' => true,
-    ];
+        'edit_posts' => true,
 
-    register_post_type('recipe', $args);
+        'edit_other_posts' => true,
+
+        'edit_published_posts' => true,
+
+        'moderate_comments' => true
+    ]);
+}
+add_action('init', 'marmishlag_add_roles');
+
+
+add_action('send_headers','site_router');
+function site_router(){
+  $root = str_replace('index.php','',$_SERVER['SCRIPT_NAME']);
+  $url = str_replace($root,'',$_SERVER['REQUEST_URI']);
+  $url = explode('/',$url);
+  if(count($url) == 1 && $url[0] =='login'){
+    require "tpl-login.php";
+    die();
+  }else
+if(count($url) == 1 && $url[0] =='profil'){
+    require "tpl-profil.php";
+    die();
+  }
+  if(count($url) == 1 && $url[0] =='logout'){
+    wp_logout();
+    $redirect_url = home_url();
+         wp_safe_redirect( $redirect_url );
+         exit;
+    
+  }
+    if(count($url) == 1 && $url[0] =='register'){
+     require "tpl-register.php";
+    die();
+  }
 }
 
-function marmishlag_resister_recipeCategory_taxonomy()
-{
-    $labels = [
-        'name' => 'Catégories',
-        'singular_name' => 'Catégorie',
-        'search_items' => 'Rechercher une catégorie',
-        'all_items' => 'Toutes les catégories'
-    ];
-
-    $args = [
-        'labels' => $labels,
-        'public' => true,
-        'hierarchical' => true,
-        'show_in_rest' => true,
-        'show_admin_column' => true
-    ];
-
-    register_taxonomy('category', ['recipe'], $args);
-}
-
-function marmishlag_init()
-{
-    marmishlag_register_event_cpt();
-    marmishlag_resister_recipeCategory_taxonomy();
-}
-add_action('init', 'marmishlag_init');
+add_filter('show_user_bar','__return_true');
+add_action('init', ' marmishlag_add_roles');
 add_action('after_setup_theme', "marmishlag_theme_support");
+add_action('after_switch_theme', function () {
+    flush_rewrite_rules();
+});
+
 // add_action('wp_enqueue_script', 'marmishlag_register_assets');
