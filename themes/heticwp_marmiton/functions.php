@@ -1,5 +1,7 @@
 <?php
 
+// require_once './classes/SponsoBox.php';
+
 function marmishlag_theme_support()
 {
     add_theme_support('title-tag');
@@ -30,7 +32,7 @@ function marmishlag_register_event_cpt()
         'public' => true,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-food',
-        'taxonomies' => array('category'),
+        'taxonomies' => array('recipeCategory'),
         'supports' => ['title', 'editor', 'author', 'thumbnail', 'comments', 'excerpt'],
         'show_in_rest' => true,
         'has_archive' => true,
@@ -56,19 +58,55 @@ function marmishlag_resister_recipeCategory_taxonomy()
         'show_admin_column' => true
     ];
 
-    register_taxonomy('category', ['recipe'], $args);
+    register_taxonomy('recipeCategory', ['recipe'], $args);
+}
+
+function marmishlag_insert_terms()
+{
+    $taxonomy = 'recipeCategory';
+    $terms = [
+        ['name' => 'Apéritifs', 'slug' => 'aperitifs'],
+        ['name' => 'Entrées', 'slug' => 'entrees'],
+        ['name' => 'Plats', 'slug' => 'plats'],
+        ['name' => 'Desserts', 'slug' => 'desserts'],
+        ['name' => 'Boissons', 'slug' => 'boissons'],
+    ];
+    foreach ($terms as $term) {
+        wp_insert_term($term['name'], $taxonomy, ['slug' => $term['slug']]);
+    }
+    // wp_insert_term('Apéritifs', $taxonomy, ['slug' => 'aperitifs']);
+    // wp_insert_term('Entrées', $taxonomy, ['slug' => 'entrees']);
+    // wp_insert_term('Plats', $taxonomy, ['slug' => 'plats']);
+    // wp_insert_term('Desserts', $taxonomy, ['slug' => 'desserts']);
+    // wp_insert_term('Boissons', $taxonomy, ['slug' => 'boissons']);
+}
+
+function marmishlag_add_roles()
+{
+    add_role('moderator', 'Modérateur / Modératrice', [
+        'read' => true,
+
+        'edit_posts' => true,
+
+        'edit_other_posts' => true,
+
+        'edit_published_posts' => true,
+
+        'moderate_comments' => true
+    ]);
 }
 
 function marmishlag_init()
 {
     marmishlag_register_event_cpt();
     marmishlag_resister_recipeCategory_taxonomy();
+    marmishlag_add_roles();
 }
-
 
 add_action('init', 'marmishlag_init');
 add_action('after_setup_theme', "marmishlag_theme_support");
 add_action('after_switch_theme', function () {
+    marmishlag_insert_terms();
     flush_rewrite_rules();
 });
 // add_action('wp_enqueue_script', 'marmishlag_register_assets');
