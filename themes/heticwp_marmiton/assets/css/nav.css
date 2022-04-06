@@ -1,0 +1,12 @@
+.nav-user {
+    padding-left: 2rem;
+}
+
+.nav-user > a {
+    text-decoration: none;
+}
+
+.nav-user__profile > img {
+    width: 40px;
+    border-radius: 50px;
+}

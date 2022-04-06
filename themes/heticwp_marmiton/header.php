@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <header>
-        <?php if (is_user_logged_in()) : ?>
+    <?php if (home_url($_SERVER['REQUEST_URI']) !== home_url('/login') || home_url($_SERVER['REQUEST_URI']) !== home_url('/register')) : ?>
+        <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
                 <div class="container-fluid">
                     <a href="/"><?php bloginfo('name') ?></a>
@@ -21,7 +21,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <?php wp_nav_menu([
                             'theme_location' => 'header',
-                            'menu_class' => 'navbar-nav me-auto mb-2 mb-lg-0',
+                            'menu_class' => 'navbar',
                             'container' => false,
                             'depth' => 2,
                             'fallback_cb' => '__return_false',
@@ -29,23 +29,22 @@
                             'walker' => new bootstrap_5_wp_nav_menu_walker()
                         ]) ?>
                         <?= get_search_form() ?>
-                        <div>
+                        <div class="nav-user">
                             <?php $user = wp_get_current_user(); ?>
                             <?php if ($user->ID == 0) : ?>
                                 <a href="<?= home_url(); ?>/login">Se connecter</a>
                                 <a href="<?= home_url(); ?>/register">S'inscrire</a>
                             <?php else : ?>
-                                <a href="<?= home_url(); ?>/profil">
-                                    <span>Bonjour, <?php echo $user->user_login; ?> </span>
+                                <a class="nav-user__profile" href="<?= home_url(); ?>/profil">
+                                    <!-- <span>Bonjour, <?php echo $user->user_login; ?> </span> -->
                                     <img src="<?php echo esc_url(get_avatar_url($user->ID)); ?>" alt="" />
-                                </a> |
-                                <a href="<?= home_url(); ?>/logout">Se déconnecter</a>
-
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </nav>
-        <?php endif; ?>
-    </header>
-    <div class="container">
+
+        </header>
+        <div class="container">
+        <? endif; ?>

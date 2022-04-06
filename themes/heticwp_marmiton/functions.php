@@ -62,6 +62,8 @@ if (count($url) == 1 && $url[0] == 'profil') {
     }
 }
 
+add_filter('show_admin_bar', '__return_false');
+
 function marmishlag_menu_class($classes)
 {
     $classes[] = 'nav-item text-dark';
@@ -74,10 +76,32 @@ function marmishlag_menu_link_class($attrs)
     return $attrs;
 }
 
+function auto_redirect_after_logout()
+{
+    wp_safe_redirect(home_url());
+    exit;
+}
+
+function my_redirect_home($registration_redirect)
+{
+    return home_url('/login');
+}
+
+function auto_login_new_user($user_id)
+{
+    wp_set_current_user($user_id);
+    wp_set_auth_cookie($user_id);
+    wp_redirect(home_url());
+    exit();
+}
+
+add_action('user_register', 'auto_login_new_user');
+
+add_filter('registration_redirect', 'my_redirect_home');
 add_filter('nav_menu_css_class', 'marmishlag_menu_class');
 add_filter('nav_menu_link_attributes', 'marmishlag_menu_link_class');
 
-add_filter('show_user_bar', '__return_true');
+add_action('wp_logout', 'auto_redirect_after_logout');
 add_action('init', ' marmishlag_add_roles');
 add_action('after_setup_theme', "marmishlag_theme_support");
 add_action('after_switch_theme', 'flush_rewrite_rules');
