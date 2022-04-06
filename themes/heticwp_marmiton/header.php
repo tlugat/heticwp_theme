@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
-
 <body>
     <?php if (home_url($_SERVER['REQUEST_URI']) !== home_url('/login') || home_url($_SERVER['REQUEST_URI']) !== home_url('/register')) : ?>
         <header>
@@ -44,7 +43,6 @@
                     </div>
                 </div>
             </nav>
-
         </header>
         <div class="container">
         <? endif; ?>
