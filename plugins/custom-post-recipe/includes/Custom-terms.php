@@ -19,7 +19,8 @@ class Custom_Terms
 
         $args = array(
             'hierarchical'                      => true,
-            'labels' => array(
+            'public'                            => true,
+            'labels'                            => array(
                 'name'                          => _x('Variétés', 'taxonomy general name'),
                 'singular_name'                 => _x('Variété', 'taxonomy singular name'),
                 'search_items'                  => __('Search Variété'),
@@ -35,7 +36,9 @@ class Custom_Terms
                 'choose_from_most_used'         => __('Choose from Most Used Variété')
             ),
             'query_var'                         => true,
-            'rewrite'                           => array('slug' => 'test-tax')
+            'rewrite'                           => array('slug' => 'test-tax'),
+            'show_in_rest'                      => true,
+            'show_in_admin_column'              => true
         );
         register_taxonomy('variety', array('recipe'), $args);
     }
@@ -44,27 +47,27 @@ class Custom_Terms
     {
         $this->taxonomy = 'variety';
         $this->terms = array(
-            '0' => array(
+            array(
                 'name'          => 'Apéritifs',
                 'slug'          => 'aperitifs',
                 'description'   => 'This is a test term one',
             ),
-            '1' => array(
+            array(
                 'name'          => 'Entrées',
                 'slug'          => 'entrees',
                 'description'   => 'This is a test term one',
             ),
-            '2' => array(
+            array(
                 'name'          => 'Plats',
                 'slug'          => 'plats',
                 'description'   => 'This is a test term one',
             ),
-            '3' => array(
+            array(
                 'name'          => 'Desserts',
                 'slug'          => 'desserts',
                 'description'   => 'This is a test term one',
             ),
-            '4' => array(
+            array(
                 'name'          => 'Boissons',
                 'slug'          => 'boissons',
                 'description'   => 'This is a test term one',

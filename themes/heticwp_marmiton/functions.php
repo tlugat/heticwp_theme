@@ -10,11 +10,11 @@ function marmishlag_theme_support()
 
 function marmishlag_register_assets()
 {
-    wp_register_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', []);
-    wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', ['popper', 'jquery'], false, true);
-    wp_register_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', [], false, true);
+    wp_register_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css', []);
+    wp_register_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', ['popper', 'jquery'], false, true);
+    wp_register_script('popper', 'https://unpkg.com/@popperjs/core@2', [], false, true);
     wp_deregister_script('jquery');
-    wp_register_script('jquery', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', [], false, true);
+    wp_register_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], false, true);
     wp_enqueue_style('bootstrap');
     wp_enqueue_script('bootstrap');
 }
@@ -66,8 +66,6 @@ add_action('send_headers','site_router');
 
 add_action('init', ' marmishlag_add_roles');
 add_action('after_setup_theme', "marmishlag_theme_support");
-add_action('after_switch_theme', function () {
-    flush_rewrite_rules();
-});
-
-// add_action('wp_enqueue_script', 'marmishlag_register_assets');
+add_action('after_switch_theme', 'flush_rewrite_rules');
+add_action('send_headers', 'site_router');
+add_action('wp_enqueue_scripts', 'marmishlag_register_assets');
