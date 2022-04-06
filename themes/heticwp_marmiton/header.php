@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div>
+    <header>
         <?php $user = wp_get_current_user(); ?>
         <?php if ($user->ID == 0) : ?>
             <a href="<?php echo bloginfo('url'); ?>/login">Se connecter</a>
@@ -20,5 +20,5 @@
             <a href="<?php echo bloginfo('url'); ?>/logout">Se déconnecter</a>
 
         <?php endif; ?>
-    </div>
-</body>
+    </header>
+    <div class="container">
