@@ -1,5 +1,26 @@
-#respond {
-    background: red;
-    padding:0 10px 0 10px;
-    }
-     
+/* #respond {
+    background: lightgray;
+    padding: 1rem;
+    border-radius: 2px;
+} */
+
+.comment-form-comment {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+
+}
+
+#comments {
+    display: none;
+}
+
+#submit {
+    background-color: #63B250;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: .5rem 1rem;
+}
+
+

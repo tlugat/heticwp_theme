@@ -31,25 +31,37 @@ $totalTime = $prepTime + $cookTime + $restingTime;
                 </div>
                 <div class="recipe-details">
                     <div class="recipe-details__row">
-                        <h5>Durée</h5>
+                        <div class="recipe-details__title">
+                            <img src="<?php bloginfo('template_url'); ?>/assets/images/cooking-time.svg" alt="cook timer">
+                            <h5>Durée</h5>
+                        </div>
                         <p>Temps de préparation : <?= $prepTime ? $prepTime : "???" ?> min</p>
                         <p>Temps de cuisson : <?= $cookTime ? $cookTime : "???" ?> min</p>
                         <p>Temps de repos : <?= $restingTime ? $restingTime : "???"; ?> min</p>
                         <p>Total : <?= $totalTime ? $totalTime : "???" ?> min</p>
                     </div>
+                    <hr />
                     <div class="recipe-details__row">
-                        <h5>Difficulté</h5>
+                        <div class="recipe-details__title">
+                            <img src="<?php bloginfo('template_url'); ?>/assets/images/speedometer.svg" alt="speedometer">
+                            <h5>Difficulté</h5>
+                        </div>
                         <p><?= $difficulty ? $difficulty : "???" ?></p>
                     </div>
+                    <hr />
                     <div class="recipe-details__row">
-                        <h5>Coût</h5>
+                        <div class="recipe-details__title">
+                            <img src="<?php bloginfo('template_url'); ?>/assets/images/money-bag.svg" alt="money bag">
+                            <h5>Coût</h5>
+                        </div>
                         <p><?= $budget ? $budget : "???" ?></p>
                     </div>
                 </div>
             </div>
-            <?php if (comments_open() || get_comments_number()) :
-                comments_template();
-            endif; ?>
+            <?php if (comments_open() || get_comments_number()) : ?>
+                <h4><?= get_comments_number() ?> commentaires</h4>
+                <?php comments_template(); ?>
+            <?php endif; ?>
         </article>
     <?php endwhile ?>
 <?php endif; ?>
