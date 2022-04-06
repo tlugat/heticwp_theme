@@ -36,6 +36,15 @@
     flex-direction: column;
     row-gap: .5rem;
 }
+.recipe-details__title {
+    display: flex;
+    column-gap: .5rem;
+    align-items: flex-start;
+}
+
+.recipe-details__title > img {
+    width: 24px;
+}
 
 .recipe-content-container {
     width: 100%;
