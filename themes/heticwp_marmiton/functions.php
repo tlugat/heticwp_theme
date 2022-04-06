@@ -10,12 +10,14 @@ function marmishlag_theme_support()
 
 function marmishlag_register_assets()
 {
+    wp_register_style('app', get_stylesheet_uri(), []);
     wp_register_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css', []);
     wp_register_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', ['popper', 'jquery'], false, true);
     wp_register_script('popper', 'https://unpkg.com/@popperjs/core@2', [], false, true);
     wp_deregister_script('jquery');
     wp_register_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', [], false, true);
     wp_enqueue_style('bootstrap');
+    wp_enqueue_style('app');
     wp_enqueue_script('bootstrap');
 }
 
@@ -59,6 +61,20 @@ if (count($url) == 1 && $url[0] == 'profil') {
         die();
     }
 }
+
+function marmishlag_menu_class($classes)
+{
+    $classes[] = 'nav-item text-dark';
+    return $classes;
+}
+
+function marmishlag_menu_link_class($attrs)
+{
+    $attrs['class'] = 'nav-link text-dark';
+    return $attrs;
+}
+add_filter('nav_menu_css_class', 'marmishlag_menu_class');
+add_filter('nav_menu_link_attributes', 'marmishlag_menu_link_class');
 
 add_filter('show_user_bar', '__return_true');
 add_action('init', ' marmishlag_add_roles');

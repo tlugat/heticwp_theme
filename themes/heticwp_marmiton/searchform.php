@@ -3,7 +3,7 @@
 Template Name: Search Page
 */
 ?>
-<form action="<?= esc_url(home_url('/actualites')); ?>">
-    <input type="search" name="s" id="" placeholder="Search" aria-label="Search" value="<?= get_search_query() ?>">
-    <button type="submit">Search</button>
+<form class="form-inline my-2 my-lg-0 d-flex" action="<?= esc_url(home_url('/')) ?>">
+    <input class="form-control mr-sm-2" name="s" type="search" placeholder="Recherche" aria-label="Search" value="<?= get_search_query() ?>">
+    <button class="btn btn-outline my-2 my-sm-0 bg-dark text-white pl-1" type="submit">Rechercher</button>
 </form>

@@ -4,6 +4,6 @@
     <?php the_content() ?>
 
     <a href="<?= get_post_type_archive_link('post') ?>">Voir les derniers articles</a>
-    <a href="<?= get_post_type_archive_link('recipe') ?>">Voir les dernieres recettes</a>
+    <a href="<?= get_post_type_archive_link('recipes') ?>">Voir les dernieres recettes</a>
 <?php endwhile; ?>
 <?php get_footer() ?>
