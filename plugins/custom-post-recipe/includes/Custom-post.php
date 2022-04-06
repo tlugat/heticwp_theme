@@ -84,12 +84,10 @@ class Custom_Post
             <p>
                 <input type="text" name="restingTime" value="<?php echo $current_restingTime; ?>" />
             </p>
-
             <h3><?php _e('Lien de la vidéo', 'recipe_example_plugin'); ?></h3>
             <p>
                 <input type="text" name="video" value="<?php echo $current_video; ?>" />
             </p>
-
         </div>
 <?php
     }

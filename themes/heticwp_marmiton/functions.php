@@ -33,10 +33,7 @@ function marmishlag_add_roles()
         'moderate_comments' => true
     ]);
 }
-add_action('init', 'marmishlag_add_roles');
 
-
-add_action('send_headers', 'site_router');
 function site_router()
 {
     $root = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
@@ -64,6 +61,9 @@ if (count($url) == 1 && $url[0] == 'profil') {
 }
 
 add_filter('show_user_bar', '__return_true');
+
+add_action('send_headers','site_router');
+
 add_action('init', ' marmishlag_add_roles');
 add_action('after_setup_theme', "marmishlag_theme_support");
 add_action('after_switch_theme', function () {
