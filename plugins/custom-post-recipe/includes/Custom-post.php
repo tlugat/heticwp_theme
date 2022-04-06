@@ -58,9 +58,8 @@ class Custom_Post
         $current_cookTime = get_post_meta($post->ID, '_recipe_cookTime', true);
         $current_restingTime = get_post_meta($post->ID, '_recipe_restingTime', true);
         // $total_time = $current_prepTime + $current_cookTime + $current_restingTime
-        $vitamins = array('Vitamin A', 'Thiamin (B1)', 'Riboflavin (B2)', 'Niacin (B3)', 'Pantothenic Acid (B5)', 'Vitamin B6', 'Vitamin B12', 'Vitamin C', 'Vitamin D', 'Vitamin E', 'Vitamin K');
 
-        $current_vitamins = (get_post_meta($post->ID, '_recipe_vitamins', true)) ? get_post_meta($post->ID, '_recipe_vitamins', true) : array();
+        $current_video = get_post_meta($post->ID, '_recipe_video', true);
 
 ?>
         <div class='inside'>
@@ -86,16 +85,11 @@ class Custom_Post
                 <input type="text" name="restingTime" value="<?php echo $current_restingTime; ?>" />
             </p>
 
-            <h3><?php _e('Vitamins', 'recipe_example_plugin'); ?></h3>
+            <h3><?php _e('Lien de la vidéo', 'recipe_example_plugin'); ?></h3>
             <p>
-                <?php
-                foreach ($vitamins as $vitamin) {
-                ?>
-                    <input type="checkbox" name="vitamins[]" value="<?php echo $vitamin; ?>" <?php checked((in_array($vitamin, $current_vitamins)) ? $vitamin : '', $vitamin); ?> /><?php echo $vitamin; ?> <br />
-                <?php
-                }
-                ?>
+                <input type="text" name="video" value="<?php echo $current_video; ?>" />
             </p>
+
         </div>
 <?php
     }
