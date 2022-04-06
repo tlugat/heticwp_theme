@@ -15,6 +15,7 @@
             'menu_class' => 'navbar-nav me-auto mb-2 mb-lg-0',
             'container' => false,
         ]) ?>
+        <?= get_search_form() ?>
         <?php $user = wp_get_current_user(); ?>
         <?php if ($user->ID == 0) : ?>
             <a href="<?php echo bloginfo('url'); ?>/login">Se connecter</a>
