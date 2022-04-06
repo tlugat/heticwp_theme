@@ -118,7 +118,6 @@ class Custom_Post
 
             <h3><?php _e('Lien de la vidéo', 'recipe_example_plugin'); ?></h3>
             <input type="text" name="video" id="video" value="<?php echo $current_video; ?>" />
-
         </div>
 <?php
     }
