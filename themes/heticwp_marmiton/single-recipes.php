@@ -23,7 +23,11 @@ $totalTime = $prepTime + $cookTime + $restingTime;
         <article class="recipe-container">
             <header class="recipe-header">
                 <h1 class="text-dark"><?php the_title(); ?> <span class="text-secondary">par</span> <u class="text-secondary"><?php the_author() ?></u> </h1>
-                <img class="recipe-header__image" src="<?php the_post_thumbnail_url(); ?>" alt="">
+                <?php if (has_post_thumbnail(get_the_ID())) : ?>
+                    <img class="recipe-header__image" src="<?php the_post_thumbnail_url(); ?>" alt="">
+                <? else : ?>
+                    <img class="recipe-header__image" src="<?php bloginfo('template_url'); ?>/assets/images/placeholder_img.svg" alt="">
+                <?php endif; ?>
             </header>
             <div class="recipe-content-container">
                 <div class="recipe-content">
