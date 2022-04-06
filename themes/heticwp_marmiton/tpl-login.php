@@ -15,7 +15,9 @@ if (!empty($_POST)) {
 ?>
 
 <?php get_header(); ?>
+
 <div class="post">
+
     <h1>Se connecter</h1>
     <?php if ($error) : ?>
         <div class="error">
@@ -23,7 +25,7 @@ if (!empty($_POST)) {
         </div>
     <?php endif ?>
 
-    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+    <form class="test" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
         <div>
             <label for="user_login">Votre pseudo</label><br />
             <input type="text" id="user_login" name="user_login">

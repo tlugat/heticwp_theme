@@ -23,7 +23,7 @@ class Custom_Post
                 ),
                 'public' => true,
                 'show_in_rest' => true,
-                'supports' => array('title', 'editor', 'thumbnail'),
+                'supports' => array('title', 'editor', 'thumbnail', 'comments'),
                 'has_archive' => true,
                 'rewrite'   => array('slug' => 'recettes'),
                 'menu_position' => 5,

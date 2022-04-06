@@ -73,6 +73,7 @@ function marmishlag_menu_link_class($attrs)
     $attrs['class'] = 'nav-link text-dark';
     return $attrs;
 }
+
 add_filter('nav_menu_css_class', 'marmishlag_menu_class');
 add_filter('nav_menu_link_attributes', 'marmishlag_menu_link_class');
 
