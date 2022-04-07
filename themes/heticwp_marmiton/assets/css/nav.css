@@ -1,7 +1,11 @@
 .nav-user {
-    padding-left: 2rem;
+    padding-left: 2rem; padding-right: 2rem;
 }
 
+.nav-title {
+    text-decoration: none;
+    font-size: 24px;
+}
 .nav-user > a {
     text-decoration: none;
 }

@@ -97,6 +97,7 @@ function auto_login_new_user($user_id)
 
 add_action('user_register', 'auto_login_new_user');
 
+add_filter('autoptimize_filter_imgopt_do_avif', '__return_false');
 add_filter('registration_redirect', 'my_redirect_home');
 add_filter('nav_menu_css_class', 'marmishlag_menu_class');
 add_filter('nav_menu_link_attributes', 'marmishlag_menu_link_class');

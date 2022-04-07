@@ -1,0 +1,38 @@
+.landing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2;
+    gap: 4rem;
+}
+.landing__posts__row {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.row__post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.landing__content {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.landing__image {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.landing__image > img {
+    width: 100%;
+}
+
+.landing__posts {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}

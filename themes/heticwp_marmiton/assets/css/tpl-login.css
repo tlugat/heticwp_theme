@@ -1,0 +1,63 @@
+.login-main{
+    display: flex;
+}
+
+.img-login{
+    height: 100vh;
+}
+
+.container{
+    padding:0;
+}
+
+.post{
+    align-self: center;
+    flex:1;
+    text-align-last: center;
+}
+
+.login-rightside{
+flex: 2;
+}
+
+.login-btn{
+    width: 72%;
+    max-width: 368px;
+    left: 79px;
+    top: 587px;
+    background: #63B250;
+    border: none;
+    height: 58px;
+}
+
+.login-input{
+    width: 72%;
+    max-width: 368px;
+    height: 58px;
+    left: 79px;
+    top: 460px;
+    border: 1px solid #B2B2B2;
+    box-sizing: border-box;
+    
+}
+
+.sub-text{
+    font-size: 85%;
+    margin-left: 5px !important;
+}
+
+.title-color{
+    color: #63B250;
+    
+}
+
+.checkbox-log{
+    margin-right: 214px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.label-lr{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}

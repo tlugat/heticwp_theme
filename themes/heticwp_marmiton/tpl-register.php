@@ -23,36 +23,49 @@ if (!empty($_POST)) {
                 $headers = 'From :' . get_option('admin_email') . "\r\n";
                 wp_mail($d['user_email'], 'Inscription réussie', $msg, $headers);
                 $d = array();
+                wp_signon($_POST);
+                header('location:/profil');
             }
         }
     }
 }
 
 ?>
-
 <?php get_header(); ?>
-<div class="post">
-    <h1>Inscription</h1>
-    <?php if ($error) : ?>
-        <div class="error">
-            <?php echo $error; ?>
-        </div>
-    <?php endif ?>
+<div class="register-main">
+    <div class="post">
+        <h1>Inscription</h1>
+        <h3 class="sub-text">Inscriver vous et acceder au cuisines! </h3>
+        <?php if ($error) : ?>
+            <div class="error">
+                <?php echo $error; ?>
+            </div>
+        <?php endif ?>
 
-    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
-        <label for="user_login">Votre login</label><br>
-        <input type="text" value="<?php echo isset($d['user_login']) ? $d['user_login'] : ''; ?>" name="user_login" id="user_login"><br>
+        <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+            <div class="input-group">
+                <label for="user_login" class="child-mar">Votre login</label>
+                <input type="text" class="login-input" value="<?php echo isset($d['user_login']) ? $d['user_login'] : ''; ?>" name="user_login" id="user_login">
+            </div>
+            <div class="input-group">
+                <label for="user_email" class="child-mar">Votre email</label>
+                <input type="text" class="login-input" value="<?php echo isset($d['user_email']) ? $d['user_login'] : ''; ?>" name="user_email" id="user_email">
+            </div>
 
-        <label for="user_email">Votre email</label><br>
-        <input type="text" value="<?php echo isset($d['user_email']) ? $d['user_login'] : ''; ?>" name="user_email" id="user_email"><br>
-
-        <label for="user_pass">Votre mot de passe</label><br>
-        <input type="password" id="user_pass" name="user_pass"><br>
-
-        <label for="user_pass2">Comfirmer votre mot de passe</label><br>
-        <input type="password" id="user_pass2" name="user_pass2"><br>
-        <input type="submit" value="Se connecter">
-    </form>
+            <div class="input-group">
+                <label for="user_pass" class="child-mar">Votre mot de passe</label>
+                <input type="password" id="user_pass" name="user_pass" class="login-input">
+            </div>
+            <div class="input-group">
+                <label for="user_pass2" class="child-mar">Comfirmer votre mot de passe</label>
+                <input type="password" id="user_pass2" name="user_pass2" class="login-input">
+            </div>
+            <input type="submit" value="S'inscrire" class="login-btn1">
+        </form>
+    </div>
+    <div class="login-rightside">
+        <img class="img-login" src="https://cdn.dribbble.com/users/1731254/screenshots/8346192/italian_food_illustration_tubikarts_4x.png" alt="img login">
+    </div>
 </div>
 
 <?php get_footer(); ?>
